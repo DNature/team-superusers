@@ -5,7 +5,7 @@ import { withStyles, Card, CardActionArea, CardMedia, CardContent, Typography, B
 const styles = theme => ({
   ...theme.theme,
   media: {
-    height: 240,
+    height: 369,
   },
   ammount: {
     marginLeft: 'auto',
@@ -37,10 +37,9 @@ const CollectionItem = ({ classes }) => (
       <Button size="small" color="primary" variant="contained">
         Learn More
         </Button>
-
       <div>
         <Typography color="primary" variant="h5">$95,000,000</Typography>
-        <Typography color="secondary" variant="p" className={classes.crossed}>$105,000,000</Typography>
+        <Typography color="secondary" variant="body2" className={classes.crossed}>$105,000,000</Typography>
       </div>
     </CardActions>
   </Card>

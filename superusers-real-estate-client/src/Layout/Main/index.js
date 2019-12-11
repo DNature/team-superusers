@@ -1,29 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
-import { Topbar } from './components';
+import {
+  withStyles,
+  Divider,
+  useTheme,
+  useMediaQuery
+} from '@material-ui/core';
+import { Topbar, Footer, Sidebar } from './components';
+import clsx from 'clsx';
 
 const styles = theme => ({
   ...theme.theme,
   root: {
-    paddingTop: theme.spacing(10),
-    height: '100%'
+    paddingTop: 56,
+    height: '100%',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: 64
+    }
   },
   content: {
     height: '100%',
-    width: '100%',
-    margin: 0,
-    padding: 0
+    width: '100%'
+  },
+  footer: {
+    marginTop: theme.spacing(8),
+    background: 'white'
   }
 });
 
 const Main = props => {
   const { classes, children } = props;
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
+    defaultMatches: true
+  });
+
+  const [openSidebar, setOpenSidebar] = React.useState(false);
+
+  const handleSidebarOpen = () => {
+    setOpenSidebar(true);
+  };
+
+  const handleSidebarClose = () => {
+    setOpenSidebar(false);
+  };
+
+  const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
   return (
-    <div className={classes.root}>
-      <Topbar />
-      <main className={classes.content}>{children}</main>
+    <div
+      className={clsx({
+        [classes.root]: true,
+        [classes.shiftContent]: isDesktop
+      })}
+    >
+      <Topbar onSidebarOpen={handleSidebarOpen} />
+      <Sidebar
+        className={classes.topbar}
+        onClose={handleSidebarClose}
+        open={!isDesktop && shouldOpenSidebar}
+        variant={isDesktop ? 'persistent' : 'temporary'}
+      />
+      <main className={classes.content}>
+        {children}
+        <div className={classes.footer}>
+          <Divider />
+          <Footer />
+        </div>
+      </main>
     </div>
   );
 };

@@ -1,7 +1,17 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, withStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import {
+  AppBar,
+  Toolbar,
+  withStyles,
+  Badge,
+  Hidden,
+  IconButton,
+  Button
+} from '@material-ui/core';
+import { Notifications, Input, Menu } from '@material-ui/icons';
 
 const styles = theme => ({
   ...theme.theme,
@@ -9,12 +19,20 @@ const styles = theme => ({
     boxShadow: 'none'
   },
   navLogo: {
-    color: theme.palette.primary.light
+    color: 'white'
+  },
+  flexGrow: {
+    flexGrow: 1
+  },
+  signOutButton: {
+    marginLeft: theme.spacing(1)
   }
 });
 
 const Topbar = props => {
-  const { classes, className, ...rest } = props;
+  const { classes, className, onSidebarOpen, ...rest } = props;
+  const [notifications] = React.useState([]);
+
   return (
     <AppBar
       {...rest}
@@ -23,7 +41,53 @@ const Topbar = props => {
       position='fixed'
     >
       <Toolbar>
-        <h4 className={`logo ${classes.navLogo}`}>My Home</h4>
+        <h3 className={`logo ${classes.navLogo}`}>Dream Home</h3>
+
+        <div className={classes.flexGrow} />
+        <Hidden mdDown>
+          <Button
+            component={Link}
+            to='/buy'
+            color='primary'
+            variant='contained'
+          >
+            Buy
+          </Button>
+          <Button
+            component={Link}
+            to='/rent'
+            color='primary'
+            variant='contained'
+          >
+            Rent
+          </Button>
+          <Button
+            component={Link}
+            to='/sell'
+            color='primary'
+            variant='contained'
+          >
+            Sell
+          </Button>
+
+          <IconButton color='inherit'>
+            <Badge
+              badgeContent={notifications.length}
+              color='secondary'
+              variant='dot'
+            >
+              <Notifications />
+            </Badge>
+          </IconButton>
+          <IconButton className={classes.signOutButton} color='inherit'>
+            <Input />
+          </IconButton>
+        </Hidden>
+        <Hidden lgUp>
+          <IconButton color='inherit' onClick={onSidebarOpen}>
+            <Menu />
+          </IconButton>
+        </Hidden>
       </Toolbar>
     </AppBar>
   );

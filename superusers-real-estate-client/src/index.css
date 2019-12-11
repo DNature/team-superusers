@@ -2,10 +2,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100vw;
+  overflow-x: hidden;
+  line-height: 1;
 }
 
 .logo {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Satisfy', cursive;
 }
 
 .Main-root-1 {

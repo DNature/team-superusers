@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { RouteWithLayout } from './components/RouteWithLayout';
 
 import { Main as MainLayout } from './Layout';
 
@@ -9,10 +10,25 @@ const Routes = () => {
   return (
     <>
       <Switch>
-        <Route path='/' exact component={MainLayout}>
-          <MainLayout />
-          <Home />
-        </Route>
+        <RouteWithLayout layout={MainLayout} path='/' exact component={Home} />
+        <RouteWithLayout
+          layout={MainLayout}
+          path='/buy'
+          exact
+          component={Home}
+        />
+        <RouteWithLayout
+          layout={MainLayout}
+          path='/sell'
+          exact
+          component={Home}
+        />
+        <RouteWithLayout
+          layout={MainLayout}
+          path='/rent'
+          exact
+          component={Home}
+        />
       </Switch>
     </>
   );

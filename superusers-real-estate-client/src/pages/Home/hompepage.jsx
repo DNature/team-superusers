@@ -4,7 +4,7 @@ import React from "react";
 import HompageSlider from '../../components/homepage-slider/homepage-slider.component'
 import Collections from '../../components/collections/collections.component'
 // Material ui
-import { withStyles } from '@material-ui/core'
+import { withStyles, Container, Typography } from '@material-ui/core'
 
 const styles = theme => ({
   ...theme.theme,
@@ -13,6 +13,19 @@ const styles = theme => ({
   },
   container: {
     marginBottom: theme.spacing(5)
+  },
+  text: {
+    textAlign: 'center',
+    margin: 20
+  },
+  rule: {
+    width: '25%',
+    height: 3,
+    margin: 'auto',
+    background: theme.palette.primary.light
+  },
+  collection: {
+    marginTop: theme.spacing(10)
   }
 });
 
@@ -21,7 +34,12 @@ const Home = ({ classes }) => {
   return (
     <>
       <HompageSlider />
-      <Collections />
+      <Container maxWidth="md">
+        <Typography variant="h1" component="h1" className={classes.text}>We have the most listings and constant updates. <br />
+          So you’ll never miss out.</Typography>
+        <div className={classes.rule} />
+      </Container>
+      <Collections className={classes.collection} />
     </>
   );
 };
