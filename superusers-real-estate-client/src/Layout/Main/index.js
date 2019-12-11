@@ -20,11 +20,17 @@ const styles = theme => ({
   },
   content: {
     height: '100%',
-    width: '100%'
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh'
   },
   footer: {
-    marginTop: theme.spacing(8),
+    marginTop: 'auto !important',
     background: 'white'
+  },
+  children: {
+    marginBottom: theme.spacing(8)
   }
 });
 
@@ -62,7 +68,7 @@ const Main = props => {
         variant={isDesktop ? 'persistent' : 'temporary'}
       />
       <main className={classes.content}>
-        {children}
+        <div className={classes.children}>{children}</div>
         <div className={classes.footer}>
           <Divider />
           <Footer />

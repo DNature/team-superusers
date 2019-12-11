@@ -2,7 +2,7 @@ import React from "react";
 
 // components
 import HompageSlider from '../../components/homepage-slider/homepage-slider.component'
-import Collections from '../../components/collections/collections.component'
+import GroupNav from '../../components/group-nav/group.component'
 // Material ui
 import { withStyles, Container, Typography } from '@material-ui/core'
 
@@ -39,7 +39,7 @@ const Home = ({ classes }) => {
           So you’ll never miss out.</Typography>
         <div className={classes.rule} />
       </Container>
-      <Collections className={classes.collection} />
+      <GroupNav className={classes.collection} />
     </>
   );
 };

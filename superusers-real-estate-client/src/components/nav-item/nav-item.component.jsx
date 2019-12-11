@@ -5,7 +5,7 @@ import { withStyles, Card, CardActionArea, CardMedia, CardContent, Typography, B
 const styles = theme => ({
   ...theme.theme,
   media: {
-    height: 160,
+    height: 369,
   },
   ammount: {
     marginLeft: 'auto',
@@ -16,10 +16,14 @@ const styles = theme => ({
   }
 })
 
-const CollectionItem = ({ classes }) => (
+const NavItem = ({ classes }) => (
   <Card>
     <CardActionArea>
-
+      <CardMedia
+        className={classes.media}
+        image="/images/sliders/1.jpg"
+        title="Contemplative Bungallo"
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           Well Maintained Large Studio with balcony
@@ -28,14 +32,18 @@ const CollectionItem = ({ classes }) => (
           Apartment for Sale, Diamond Views 1, Jumeirah Village Circle
           </Typography>
       </CardContent>
-      <CardMedia
-        className={classes.media}
-        image="/images/sliders/1.jpg"
-        title="Live from space album cover"
-      />
     </CardActionArea>
+    <CardActions className={classes.ammount}>
+      <Button size="small" color="primary" variant="contained">
+        Learn More
+        </Button>
+      <div>
+        <Typography color="primary" variant="h5">$95,000,000</Typography>
+        <Typography color="secondary" variant="body2" className={classes.crossed}>$105,000,000</Typography>
+      </div>
+    </CardActions>
   </Card>
 )
 
 
-export default withStyles(styles)(CollectionItem)
+export default withStyles(styles)(NavItem)
