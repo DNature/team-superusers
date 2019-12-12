@@ -16,21 +16,21 @@ const styles = theme => ({
   }
 })
 
-const CollectionItem = ({ classes }) => (
+const CollectionItem = ({ classes, name, imageUrl, description, location, ammount, hotSale }) => (
   <Card>
     <CardActionArea>
 
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          Well Maintained Large Studio with balcony
-          </Typography>
+          {name}
+        </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          Apartment for Sale, Diamond Views 1, Jumeirah Village Circle
-          </Typography>
+          {description}
+        </Typography>
       </CardContent>
       <CardMedia
         className={classes.media}
-        image="/images/sliders/1.jpg"
+        image={imageUrl}
         title="Live from space album cover"
       />
     </CardActionArea>

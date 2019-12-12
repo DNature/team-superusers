@@ -5,6 +5,7 @@ import { Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import theme from './theme';
 import { createBrowserHistory } from 'history';
+import { AuthProvider } from './context/auth';
 
 import './App.css';
 import Routes from './Routes';
@@ -14,11 +15,13 @@ const themeFile = createMuiTheme(theme);
 
 function App() {
   return (
-    <MuiThemeProvider theme={themeFile}>
-      <Router history={history}>
-        <Routes />
-      </Router>
-    </MuiThemeProvider>
+    <AuthProvider>
+      <MuiThemeProvider theme={themeFile}>
+        <Router history={history}>
+          <Routes />
+        </Router>
+      </MuiThemeProvider>
+    </AuthProvider>
   );
 }
 

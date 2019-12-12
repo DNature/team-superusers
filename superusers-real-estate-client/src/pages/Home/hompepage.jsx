@@ -44,5 +44,4 @@ const Home = ({ classes }) => {
   );
 };
 
-
 export default withStyles(styles)(Home);

@@ -6,12 +6,13 @@ import {
   AppBar,
   Toolbar,
   withStyles,
-  Badge,
   Hidden,
   IconButton,
   Button
 } from '@material-ui/core';
-import { Notifications, Input, Menu } from '@material-ui/icons';
+import { Menu } from '@material-ui/icons';
+import { AuthContext } from '../../../../context/auth';
+import SignInSignUpNav from '../../../../components/signin-signup/nav.component.jsx';
 
 const styles = theme => ({
   ...theme.theme,
@@ -31,65 +32,74 @@ const styles = theme => ({
 
 const Topbar = props => {
   const { classes, className, onSidebarOpen, ...rest } = props;
-  const [notifications] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = e => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const { user, logout } = React.useContext(AuthContext);
 
   return (
-    <AppBar
-      {...rest}
-      className={clsx(classes.root, className)}
-      color='primary'
-      position='fixed'
-    >
-      <Toolbar>
-        <h3 className={`logo ${classes.navLogo}`}>Dream Home</h3>
-
-        <div className={classes.flexGrow} />
-        <Hidden mdDown>
-          <Button
-            component={Link}
-            to='/buy'
-            color='primary'
-            variant='contained'
-          >
-            Buy
-          </Button>
-          <Button
-            component={Link}
-            to='/rent'
-            color='primary'
-            variant='contained'
-          >
-            Rent
-          </Button>
-          <Button
-            component={Link}
-            to='/sell'
-            color='primary'
-            variant='contained'
-          >
-            Sell
-          </Button>
-
-          <IconButton color='inherit'>
-            <Badge
-              badgeContent={notifications.length}
-              color='secondary'
-              variant='dot'
+    <>
+      <AppBar
+        {...rest}
+        className={clsx(classes.root, className)}
+        color='primary'
+        position='fixed'
+      >
+        <Toolbar>
+          <h3 className={`logo ${classes.navLogo}`}>Dream Home</h3>
+          <div className={classes.flexGrow} />
+          <Hidden mdDown>
+            <Button
+              component={Link}
+              to='/buy'
+              color='primary'
+              variant='contained'
             >
-              <Notifications />
-            </Badge>
-          </IconButton>
-          <IconButton className={classes.signOutButton} color='inherit'>
-            <Input />
-          </IconButton>
-        </Hidden>
-        <Hidden lgUp>
-          <IconButton color='inherit' onClick={onSidebarOpen}>
-            <Menu />
-          </IconButton>
-        </Hidden>
-      </Toolbar>
-    </AppBar>
+              Buy
+            </Button>
+            <Button
+              component={Link}
+              to='/rent'
+              color='primary'
+              variant='contained'
+            >
+              Rent
+            </Button>
+            <Button
+              component={Link}
+              to='/sell'
+              color='primary'
+              variant='contained'
+            >
+              Sell
+            </Button>
+
+            {user ? (
+              <Button color='primary' variant='contained' onClick={logout}>
+                logout
+              </Button>
+            ) : (
+              <Button color='primary' variant='contained' onClick={handleOpen}>
+                Sing in
+              </Button>
+            )}
+          </Hidden>
+          <Hidden lgUp>
+            <IconButton color='inherit' onClick={onSidebarOpen}>
+              <Menu />
+            </IconButton>
+          </Hidden>
+        </Toolbar>
+      </AppBar>
+      <SignInSignUpNav handleClose={handleClose} open={open} />
+    </>
   );
 };
 Topbar.propTypes = {

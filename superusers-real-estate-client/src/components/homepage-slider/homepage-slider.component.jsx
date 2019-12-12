@@ -15,7 +15,7 @@ const styles = theme => ({
     height: '100%',
     width: '100%',
     position: 'relative',
-    background: `linear-gradient(70deg, ${theme.palette.primary.dark}, ${theme.palette.success.main})`,
+    background: `linear-gradient(70deg, ${theme.palette.primary.dark}, ${theme.palette.success.dark})`,
     display: 'grid',
     placeContent: 'center'
   },

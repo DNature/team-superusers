@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom'
 import { withStyles, Card, CardActionArea, CardMedia, CardContent, Typography, Button, CardActions, } from '@material-ui/core';
 
 const styles = theme => ({
@@ -13,35 +13,41 @@ const styles = theme => ({
   },
   crossed: {
     textDecoration: 'line-through'
+  },
+  cardContent: {
+    textAlign: 'center',
+    display: 'grid',
+    placeContent: 'center'
+  },
+  button: {
+    margin: '10px auto',
+    width: '100%',
+    textAlign: 'center'
   }
 })
 
-const NavItem = ({ classes }) => (
+const NavItem = ({ classes, imageUrl, title, description, buttonTitle, path }) => (
   <Card>
     <CardActionArea>
       <CardMedia
         className={classes.media}
-        image="/images/sliders/1.jpg"
+        image={imageUrl}
         title="Contemplative Bungallo"
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          Well Maintained Large Studio with balcony
-          </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Apartment for Sale, Diamond Views 1, Jumeirah Village Circle
-          </Typography>
+      <CardContent className={classes.cardContent}>
+        <Typography gutterBottom variant="h2" component="h2">
+          {title}
+        </Typography>
+        <Typography variant="body1" color="textSecondary" component="p">
+          {description}
+        </Typography>
       </CardContent>
-    </CardActionArea>
-    <CardActions className={classes.ammount}>
-      <Button size="small" color="primary" variant="contained">
-        Learn More
+      <div className={classes.button}>
+        <Button component={Link} to={path} size="small" color="primary" variant="contained">
+          {buttonTitle}
         </Button>
-      <div>
-        <Typography color="primary" variant="h5">$95,000,000</Typography>
-        <Typography color="secondary" variant="body2" className={classes.crossed}>$105,000,000</Typography>
       </div>
-    </CardActions>
+    </CardActionArea>
   </Card>
 )
 

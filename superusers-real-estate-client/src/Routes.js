@@ -4,7 +4,7 @@ import { RouteWithLayout } from './components/RouteWithLayout';
 
 import { Main as MainLayout } from './Layout';
 
-import { Home, BuyAHouse } from './pages';
+import { Home, BuyAHouse, SellPage } from './pages';
 
 const Routes = () => {
   return (
@@ -21,7 +21,7 @@ const Routes = () => {
           layout={MainLayout}
           path='/sell'
           exact
-          component={Home}
+          component={SellPage}
         />
         <RouteWithLayout
           layout={MainLayout}
