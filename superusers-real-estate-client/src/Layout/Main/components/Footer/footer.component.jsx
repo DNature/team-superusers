@@ -19,13 +19,12 @@ const Footer = props => {
       <Typography variant="body1">
         &copy;{" "}
         <Link component="a" href="https://divinenature.io/" target="_blank" className="logo">
-          Divine Nature
+          Team-Superusers
         </Link>
         . 2019
       </Typography>
       <Typography variant="caption">
-        Created with love for the environment. By designers and developers who
-        love to work together in offices!
+        Created with love and Ease for Real estate @Naija-Hacks
       </Typography>
     </div>
   );

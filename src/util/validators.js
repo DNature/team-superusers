@@ -13,29 +13,24 @@ export const validateRegisterUserInput = (
 ) => {
   const errors = {};
 
-  if (fullName.trim() === "") {
-    errors.fullName = "Full Name must not be empty";
+  if (fullName.trim() === '') {
+    errors.fullName = 'Full Name must not be empty';
   }
 
-  if (username.trim() === "") {
-    errors.username = "username must not be empty";
+  if (username.trim() === '') {
+    errors.username = 'username must not be empty';
   }
-  //   else {
-  //     if (!username.match(regEx)) {
-  //       errors.username = "username must be a valid username address";
-  //     }
-  //   }
 
-  if (mobileNumber.trim() === "") {
-    errors.mobileNumber = "Mobile number must not be empty";
+  if (mobileNumber.trim() === '') {
+    errors.mobileNumber = 'Mobile number must not be empty';
   } else if (mobileNumber.length < 9) {
-    errors.mobileNumber = "Please enter a valid mobile number";
+    errors.mobileNumber = 'Please enter a valid mobile number';
   }
 
-  if (password === "") {
-    errors.password = "Password must not be empty";
+  if (password === '') {
+    errors.password = 'Password must not be empty';
   } else if (password.length < 8) {
-    errors.password = "Password must not be less than 8 chars";
+    errors.password = 'Password must not be less than 8 chars';
   }
 
   return {
@@ -46,14 +41,37 @@ export const validateRegisterUserInput = (
 
 export const validateUserLoginInput = (username, password) => {
   const errors = {};
-  if (username.trim() === "") {
-    errors.username = "username must not be empty";
+  if (username.trim() === '') {
+    errors.username = 'username must not be empty';
   }
 
-  if (password === "") {
-    errors.password = "Password must not be empty";
+  if (password === '') {
+    errors.password = 'Password must not be empty';
   }
 
+  return {
+    errors,
+    valid: Object.keys(errors).length < 1
+  };
+};
+
+export const validateCategoryInput = name => {
+  const errors = {};
+  if (name.trim() === '') errors.name = 'Field must not be empty';
+
+  return {
+    errors,
+    valid: Object.keys(errors).length < 1
+  };
+};
+
+export const validatePropertyInput = name => {
+  const errors = {};
+  if (name.trim() === '') errors.name = 'Field must not be empty';
+  if (description.trim() === '')
+    errors.description = 'Description cannot be empty';
+  if (location.trim() === '') errors.location = 'Location cannot be empty';
+  if (ammount.trim() === '') errors.ammount = 'Field must not be empty';
   return {
     errors,
     valid: Object.keys(errors).length < 1

@@ -1,4 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Team-superusers
+
+## Goal
+
+This project The goal of this team is to come up with a suitable solution on Housing/Real Estate.
+Further more, it's going to be an extreme flexible web applications (mobile app later on) that house/estate/land and properties owners would be able to sell/rent/lease their properties at ease. There's going to be an overall Amin panel that would control users(including other necessary permissions) and users(property owners) will be able to upload pictures of their properties with a price tag, reach an agreement and we'll do the marketing (adds).
+I've been able to create a sign up/sign-in system in the back end using nodejs, apollo-server, express, and mongoDB. And I've initialized a landing page for the client side using React and apollo-react.
+Please let me know if you have anything to say.
+
+## Client Architecture
+
+```bash
+  Home Page
+  Buy Page
+  Rent Page
+  Search Feature
+  Authentication and Authorization
+```
+
+### Screenshots
+
+![Home Page](/superusers-real-estate-client/readme/landing-page.PNG)
+
+![Category Section](/superusers-real-estate-client/readme/category-section.PNG)
+
+![Buy Page](/superusers-real-estate-client/readme/buy-page.PNG)
+
+![item-description](/superusers-real-estate-client/readme/item-description.PNG)
+
+![Home Page](/superusers-real-estate-client/readme/buy-page2.PNG)
+
+![Home Page](/superusers-real-estate-client/readme/responsive-version.PNG)
 
 ## Available Scripts
 
@@ -27,42 +58,37 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## Aditional Info
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+: Dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```json
+{
+  "@apollo/react-hooks": "^3.1.3",
+  "@material-ui/core": "^4.5.2",
+  "@material-ui/icons": "^4.5.1",
+  "apollo-cache-inmemory": "^1.6.3",
+  "apollo-client": "^2.6.4",
+  "apollo-link-context": "^1.0.19",
+  "apollo-upload-client": "^11.0.0",
+  "graphql": "^14.5.8",
+  "graphql-tag": "^2.10.1",
+  "jwt-decode": "^2.2.0",
+  "react": "^16.11.0",
+  "react-dom": "^16.11.0",
+  "react-google-maps": "^9.4.5",
+  "react-router-dom": "^5.1.2",
+  "react-scripts": "3.2.0",
+  "react-swipeable-views": "^0.13.3"
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    : Dev Dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
 
-## Learn More
+{
+"nodemon": "^1.19.4"
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```

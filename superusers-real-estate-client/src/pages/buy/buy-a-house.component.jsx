@@ -44,12 +44,12 @@ function BuyAHouse({ classes }) {
       <CustomPage background="/images/sliders/3.jpg" headingText="Search for your dream house" />
       <Grid container>
         <Grid item lg={6} md={6} xl={6}>
-          {/* <WrappedMap
+          <WrappedMap
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDE1EQbT6to6kJrno6AIXyFdPZyFL_Tkoc&callback=initMap`}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `100%` }} />}
             mapElement={<div style={{ height: `100%` }} />}
-          /> */}
+          />
         </Grid>
         <Grid item lg={6} md={6} xl={6}>
           <Collections />

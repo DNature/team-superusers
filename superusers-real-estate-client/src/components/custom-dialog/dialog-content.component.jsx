@@ -85,12 +85,12 @@ const CustomDialogContent = ({ classes, handleClose, ...otherProps }) => {
 
           <Grid item lg={6} md={6} sm={12} xs={12}>
             <div className={classes.map}>
-              {/* <WrappedMap
+              <WrappedMap
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDE1EQbT6to6kJrno6AIXyFdPZyFL_Tkoc&callback=initMap`}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `100%` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
-              /> */}
+              />
             </div>
             <br />
             <Divider />
