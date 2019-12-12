@@ -4,14 +4,21 @@ export default gql`
   type Property {
     id: ID!
     name: String!
-    owner: String
+    owner: String!
+    imageUrl: String!
     createdAt: String!
     description: String!
     location: String!
     ammount: String!
     hotSale: Boolean!
     category: String!
+    otherImages: [Image]
     tags: [Tags]
+  }
+
+  type Image {
+    id: ID!
+    url: String!
   }
 
   type Tags {
@@ -19,12 +26,33 @@ export default gql`
     tag: String!
   }
 
+  input PropertyInput {
+    name: String!
+    imageUrl: String!
+    description: String
+    location: String!
+    ammount: String!
+    hotSale: Boolean
+    category: String!
+    otherImages: [ImageInput]
+    tags: [TagInput]
+  }
+
+  input ImageInput {
+    url: String
+  }
+
+  input TagInput {
+    tag: String
+  }
+
   extend type Query {
     properties: [Property]
-    property(proprtyId: ID!) Property!
+    property(proprtyId: ID!): Property!
   }
 
   extend type Mutation {
-    createProperty(name: String!, count: Int!): Property
+    createProperty(property: PropertyInput): Property!
+    deleteProperty(id: ID!): String
   }
 `;

@@ -43,15 +43,12 @@ export default {
     //~ Register User
     async registerUser(
       root,
-      {
-        registerUser: { fullName, username, mobileNumber, password }
-      },
-      context // For Validation and aditional headers
+      { registerUser: { displayName, email, mobileNumber, password } }
     ) {
       // const admin = checkAdmin(context);
       const { valid, errors } = validateRegisterUserInput(
-        fullName,
-        username,
+        displayName,
+        email,
         mobileNumber,
         password
       );
@@ -63,12 +60,12 @@ export default {
       }
 
       // Check if an exiting user with the same email
-      const existingUser = await User.findOne({ username });
+      const existingUser = await User.findOne({ email });
 
       if (existingUser) {
         throw new UserInputError('Existing User', {
           errors: {
-            username: 'User Exists'
+            email: 'User Exists'
           }
         });
       }
@@ -78,8 +75,8 @@ export default {
 
       // Presave user to Database
       const newUser = new User({
-        fullName,
-        username,
+        displayName,
+        email,
         mobileNumber,
         password,
         createdAt: new Date().toISOString()
@@ -98,8 +95,8 @@ export default {
     },
 
     //~ Login User
-    async loginUser(root, { username, password }, context, info) {
-      const { errors, valid } = validateUserLoginInput(username, password);
+    async loginUser(root, { email, password }) {
+      const { errors, valid } = validateUserLoginInput(email, password);
 
       // Validate User Input
       if (!valid) {
@@ -107,7 +104,7 @@ export default {
       }
 
       // Find User from DB
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ email });
 
       if (!user) {
         errors.general = 'User not found';

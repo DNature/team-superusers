@@ -14,7 +14,7 @@ export default {
   Mutation: {
     ...usersResolvers.Mutation,
     ...filesResolvers.Mutation,
-    ...categoryResolvers.Mutation,
-    ...propertyResolvers.Mutation
+    ...propertyResolvers.Mutation,
+    ...categoryResolvers.Mutation
   }
 };

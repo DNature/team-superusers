@@ -1,16 +1,11 @@
-import { model, Schema } from "mongoose";
+import { model, Schema } from 'mongoose';
 
-const userSchema = new Schema(
-  {
-    fullName: String,
-    username: String,
-    mobileNumber: Number,
-    password: String
-  },
+const userSchema = new Schema({
+  displayName: { type: String, required: true },
+  email: { type: String, required: true },
+  mobileNumber: { type: String, required: true },
+  password: { type: String, required: true },
+  createdAt: String
+});
 
-  {
-    timestamps: true
-  }
-);
-
-export default model("User", userSchema);
+export default model('User', userSchema);
