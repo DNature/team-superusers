@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types'
 
-// components
-import SearchBox from '../search-box/search-box.component'
-
 // Material ui
 import { withStyles } from '@material-ui/core'
 import clsx from "clsx";
@@ -48,7 +45,9 @@ const CustomPage = ({ classes, background, headingText, children, className, ...
         <div className={classes.textContainer}>
           <h1 className={classes.heading}>{headingText}</h1>
         </div>
-        <SearchBox className={classes.searchbox} />
+        <div className={classes.searchbox}>
+          {children}
+        </div>
       </div>
     </>
   );

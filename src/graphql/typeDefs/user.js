@@ -13,8 +13,8 @@ export default gql`
   input RegisterUserInput {
     displayName: String!
     email: String!
-    mobileNumber: String!
     password: String!
+    key: String!
   }
 
   extend type Query {

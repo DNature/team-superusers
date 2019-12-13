@@ -24,15 +24,25 @@ const CollectionItem = ({ classes, name, imageUrl, description, location, ammoun
         <Typography gutterBottom variant="h5" component="h2">
           {name}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {description}
+
+        <Typography variant="h2" color="secondary" component="p">
+          Price: ${ammount}
         </Typography>
       </CardContent>
+
       <CardMedia
         className={classes.media}
         image={imageUrl}
         title="Live from space album cover"
       />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {description}
+        </Typography>
+        <Typography gutterBottom variant="h5" component="h2">
+          Location: {location}
+        </Typography>
+      </CardContent>
     </CardActionArea>
   </Card>
 )

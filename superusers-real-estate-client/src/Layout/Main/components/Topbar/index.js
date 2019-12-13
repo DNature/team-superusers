@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -20,7 +20,10 @@ const styles = theme => ({
     boxShadow: 'none'
   },
   navLogo: {
-    color: 'white'
+    color: 'white',
+    textDecoration: 'none',
+    cursor: 'pointer',
+    outline: 'none'
   },
   flexGrow: {
     flexGrow: 1
@@ -31,7 +34,7 @@ const styles = theme => ({
 });
 
 const Topbar = props => {
-  const { classes, className, onSidebarOpen, ...rest } = props;
+  const { classes, className, onSidebarOpen, history, ...rest } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = e => {
@@ -53,9 +56,24 @@ const Topbar = props => {
         position='fixed'
       >
         <Toolbar>
-          <h3 className={`logo ${classes.navLogo}`}>Dream Home</h3>
+          <h3
+            className={`logo ${classes.navLogo}`}
+            onClick={() => history.push('/')}
+          >
+            Dream Home
+          </h3>
+
           <div className={classes.flexGrow} />
           <Hidden mdDown>
+            <Button
+              component={Link}
+              to='/rent'
+              color='primary'
+              variant='contained'
+              disabled
+            >
+              Rent
+            </Button>
             <Button
               component={Link}
               to='/buy'
@@ -64,19 +82,15 @@ const Topbar = props => {
             >
               Buy
             </Button>
-            <Button
-              component={Link}
-              to='/rent'
-              color='primary'
-              variant='contained'
-            >
-              Rent
-            </Button>
+
             <Button
               component={Link}
               to='/sell'
               color='primary'
               variant='contained'
+              onClick={() => {
+                !user && handleOpen();
+              }}
             >
               Sell
             </Button>
@@ -105,4 +119,4 @@ const Topbar = props => {
 Topbar.propTypes = {
   className: PropTypes.string
 };
-export default withStyles(styles)(Topbar);
+export default withRouter(withStyles(styles)(Topbar));

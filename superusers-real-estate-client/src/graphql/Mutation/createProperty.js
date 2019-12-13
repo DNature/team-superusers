@@ -10,8 +10,8 @@ export default gql`
     $hotSale: String
     $category: String!
   ) {
-    property(
-      PropertyInput: {
+    createProperty(
+      property: {
         name: $name
         imageUrl: $imageUrl
         description: $description

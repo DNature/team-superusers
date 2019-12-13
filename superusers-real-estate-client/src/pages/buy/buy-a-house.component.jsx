@@ -1,10 +1,14 @@
 import React from "react";
+import { useQuery } from '@apollo/react-hooks'
+import { Properties } from "../../graphql";
 
 // components
 import CustomPage from '../../components/custom-page/custom.component';
 import Collections from '../../components/collections/collections.component';
+import SearchBox from '../../components/search-box/search-box.component'
+
 // Material ui
-import { withStyles, Grid } from '@material-ui/core'
+import { withStyles, Grid, LinearProgress } from '@material-ui/core'
 
 import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps'
 
@@ -34,14 +38,20 @@ const styles = theme => ({
   },
   collection: {
     marginTop: theme.spacing(10)
+  },
+  property: {
+    paddingLeft: theme.spacing(1)
   }
 });
 
 function BuyAHouse({ classes }) {
-
+  const { data, loading } = useQuery(Properties)
   return (
     <>
-      <CustomPage background="/images/sliders/3.jpg" headingText="Search for your dream house" />
+      {loading && <LinearProgress color="secondary" />}
+      <CustomPage background="/images/sliders/3.jpg" headingText="Search for your dream house">
+        <SearchBox />
+      </CustomPage>
       <Grid container>
         <Grid item lg={6} md={6} xl={6}>
           <WrappedMap
@@ -51,8 +61,10 @@ function BuyAHouse({ classes }) {
             mapElement={<div style={{ height: `100%` }} />}
           />
         </Grid>
-        <Grid item lg={6} md={6} xl={6}>
-          <Collections />
+        <Grid item lg={6} md={6} xl={6} className={classes.property}>
+          {
+            data && <Collections properties={data.properties} />
+          }
         </Grid>
       </Grid>
     </>

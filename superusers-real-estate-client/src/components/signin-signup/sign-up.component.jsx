@@ -27,12 +27,12 @@ const styles = theme => ({
 
 const SignUp = props => {
   const context = useContext(AuthContext);
-  const { classes } = props;
+  const { classes, onClose } = props;
   const [errors, setErrors] = React.useState({});
   const { values, onSubmit, onChange } = UseFormHook(registerUserCallBack, {
     displayName: '',
     email: '',
-    mobileNumber: '',
+    key: '',
     password: ''
   });
 
@@ -46,6 +46,7 @@ const SignUp = props => {
     },
     onCompleted() {
       setErrors({})
+      onClose()
     },
     variables: values
   });
@@ -90,14 +91,14 @@ const SignUp = props => {
           <br />
           <TextField
             fullWidth
-            label='Mobile Number'
-            name='mobileNumber'
-            id='mobileNumber'
-            type='number'
-            value={values.mobileNumber}
+            label='Verification Code'
+            name='key'
+            id='key'
+            type='text'
+            value={values.key.toUpperCase()}
             onChange={onChange}
-            error={errors && errors.mobileNumber ? true : false}
-            helperText={errors && errors.mobileNumber}
+            error={errors && errors.key ? true : false}
+            helperText={errors && errors.key}
           />
           <br />
           <br />

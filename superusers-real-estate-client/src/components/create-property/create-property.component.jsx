@@ -30,14 +30,16 @@ const CreateProperty = props => {
 
   const { classes } = props;
   const [errors, setErrors] = React.useState({});
-  const { values, onSubmit, onChange } = UseFormHook(createCategoryCallback, {
+  const initialState = {
     name: '',
     imageUrl: '',
     description: '',
+    location: '',
     ammount: '',
     hotSale: 'false',
     category: ''
-  });
+  }
+  const { values, onSubmit, onChange, setValues } = UseFormHook(createCategoryCallback, initialState);
 
   const { data } = useQuery(Categories);
 
@@ -50,7 +52,7 @@ const CreateProperty = props => {
           variable: values
         });
         data.properties = [result.data.createProperty, ...data.properties];
-        proxy.writeQuery({ query: Properties, variables: values, data });
+        proxy.writeQuery({ query: Properties, variables: { ...values, owner: user.displayName }, data });
       } catch (err) {
         console.log(err);
       }
@@ -60,6 +62,7 @@ const CreateProperty = props => {
       return false;
     },
     onCompleted() {
+      setValues(initialState)
       setErrors({})
     },
   });
@@ -107,6 +110,7 @@ const CreateProperty = props => {
               name='description'
               id='description'
               type='text'
+              multiline
               value={values.description}
               onChange={onChange}
               error={errors && errors.description ? true : false}
@@ -146,20 +150,21 @@ const CreateProperty = props => {
             <div align='center'>
               <SelectCategory
                 value={values.category}
-                handleChange={onChange}
+                onChange={onChange}
                 fullWidth
-                error={errors.category ? true : false}
-                helpertext={errors.category}
+                name="category"
+                helperText={errors.category && errors.category}
               >
                 <MenuItem value=''>
                   <em>None</em>
                 </MenuItem>
                 {data &&
-                  data.categories.map(({ id, name, ...otherProps }) => (
-                    <MenuItem value={name} key={id} {...otherProps}>
+                  data.categories.map(({ id, name }) => (
+                    <MenuItem value={name} key={id}>
                       {name}
                     </MenuItem>
-                  ))}
+                  )
+                  )}
               </SelectCategory>
             </div>
             <br />

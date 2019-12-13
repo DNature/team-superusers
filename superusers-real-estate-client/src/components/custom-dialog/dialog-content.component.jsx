@@ -100,7 +100,7 @@ const CustomDialogContent = ({ classes, handleClose, ...otherProps }) => {
             </Typography>
             <br />
             <br />
-            <Typography variant="h3" color="secondary">Features</Typography>
+            <Typography component="h2" color="secondary">Features</Typography>
             <Container maxWidth="sm"> <br /><Divider /><br />
               <Grid container spacing={5}>
                 <Grid item lg={6}>

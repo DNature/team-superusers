@@ -1,5 +1,5 @@
 //? Schema
-import User from '../../models/User';
+import { User, VerifyApi } from '../../models';
 
 //? Validators / Authentication
 import { UserInputError } from 'apollo-server-express';
@@ -43,14 +43,15 @@ export default {
     //~ Register User
     async registerUser(
       root,
-      { registerUser: { displayName, email, mobileNumber, password } }
+      { registerUser: { displayName, email, password, key } }
     ) {
       // const admin = checkAdmin(context);
+      const verify = await VerifyApi.findOne({ key });
       const { valid, errors } = validateRegisterUserInput(
         displayName,
         email,
-        mobileNumber,
-        password
+        password,
+        key
       );
 
       if (!valid) {
@@ -59,6 +60,21 @@ export default {
         });
       }
 
+      if (!verify) {
+        throw new UserInputError('Enter a valid Verification Code', {
+          errors: {
+            key: 'Enter a valid Verification Code'
+          }
+        });
+      }
+
+      if (key !== verify.key) {
+        throw new UserInputError('Invalid Verification Code', {
+          errors: {
+            key: 'Invalid Verification Code'
+          }
+        });
+      }
       // Check if an exiting user with the same email
       const existingUser = await User.findOne({ email });
 
@@ -70,28 +86,34 @@ export default {
         });
       }
 
-      // Hash password
-      password = await bcrypt.hash(password, 12);
+      try {
+        // Hash password
+        password = await bcrypt.hash(password, 12);
 
-      // Presave user to Database
-      const newUser = new User({
-        displayName,
-        email,
-        mobileNumber,
-        password,
-        createdAt: new Date().toISOString()
-      });
+        // Presave user to Database
+        const newUser = new User({
+          displayName,
+          email,
+          mobileNumber: verify.mobileNumber,
+          password,
+          createdAt: new Date().toISOString()
+        });
 
-      // Save user to Database
-      const user = await newUser.save();
-      // Generate User Token
-      const token = generateUserToken(user);
+        // Save user to Database
 
-      return {
-        ...user._doc,
-        id: user._id,
-        token
-      };
+        const user = await newUser.save();
+        // Generate User Token
+        const token = generateUserToken(user);
+        await verify.delete();
+
+        return {
+          ...user._doc,
+          id: user._id,
+          token
+        };
+      } catch (err) {
+        throw new Error(err);
+      }
     },
 
     //~ Login User

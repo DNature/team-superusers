@@ -1,16 +1,17 @@
-import React, { useReducer, createContext } from "react";
-import jwtDecode from "jwt-decode";
+import React, { useReducer, createContext } from 'react';
+import jwtDecode from 'jwt-decode';
 
 // ***********
 const initialState = {
-  user: null
+  user: null,
+  verificationCode: null
 };
 
-if (localStorage.getItem("jwtToken")) {
-  const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
+if (localStorage.getItem('jwtToken')) {
+  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
 
   if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem("jwtToken");
+    localStorage.removeItem('jwtToken');
   } else {
     initialState.user = decodedToken;
   }
@@ -18,23 +19,33 @@ if (localStorage.getItem("jwtToken")) {
 
 const AuthContext = createContext({
   user: null,
+  verificationCode: null,
   login: userData => {},
-  logout: () => {}
+  logout: () => {},
+  verify: code => {}
 });
 
 function authReducer(state, action) {
   switch (action.type) {
-    case "LOGIN":
+    case 'LOGIN':
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
+        verificationCode: null
       };
 
-    case "LOGOUT":
+    case 'VERIFICATION':
+      return {
+        ...state,
+        verificationCode: action.payload
+      };
+
+    case 'LOGOUT':
       return {
         ...state,
         user: null
       };
+
     default:
       return state;
   }
@@ -45,22 +56,35 @@ function AuthProvider(props) {
 
   function login(userData) {
     dispatch({
-      type: "LOGIN",
+      type: 'LOGIN',
       payload: userData
     });
-    localStorage.setItem("jwtToken", userData.token);
+    localStorage.setItem('jwtToken', userData.token);
   }
 
   const logout = () => {
-    localStorage.removeItem("jwtToken");
+    localStorage.removeItem('jwtToken');
     dispatch({
-      type: "LOGOUT"
+      type: 'LOGOUT'
     });
   };
 
+  function verify(verificationCode) {
+    dispatch({
+      type: 'VERIFICATION',
+      payload: verificationCode
+    });
+  }
+
   return (
     <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
+      value={{
+        user: state.user,
+        verificationCode: state.verificationCode,
+        login,
+        logout,
+        verify
+      }}
       {...props}
     />
   );

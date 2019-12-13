@@ -28,14 +28,14 @@ const Collections = ({ classes, className, properties }) => {
 
   return (
     <div className={clsx(classes.collectionContainer, className)}>
-      <Grid container spacing={1}>
-        <Grid onClick={handleOpen} item xl={3} lg={6} md={6} sm={12} xg={12}>
-          {
-            properties.map(({ id, ...property }) => (
-              <CollectionItem key={id} {...property} />
-            ))
-          }
-        </Grid>
+      <Grid container spacing={2}>
+        {
+          properties.map(({ id, ...property }) => (
+            <Grid onClick={handleOpen} key={id} item xl={3} lg={4} md={6} sm={12} xg={12}>
+              <CollectionItem  {...property} />
+            </Grid>
+          ))
+        }
       </Grid>
       <CustomDialog open={open} handleClose={handleClose} maxWidth="lg">
         <CustomDialogContent handleClose={handleClose} />

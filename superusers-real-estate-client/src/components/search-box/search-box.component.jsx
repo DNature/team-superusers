@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { withStyles, InputBase } from "@material-ui/core";
 import { fade } from "@material-ui/core/styles";
 import { Search as SearchIcon } from "@material-ui/icons";
-import { UseFormHook } from '../hooks'
 import clsx from "clsx";
 
 const styles = theme => ({
@@ -49,19 +48,7 @@ const styles = theme => ({
   }
 });
 
-const SearchBox = ({ classes, className, ...otherProps }) => {
-  const { values, onChange, onSubmit } = UseFormHook(searchCallback, {
-    value: ""
-  });
-
-
-  function searchCallback() {
-    handleFocus();
-  }
-
-  const handleFocus = e => {
-
-  };
+const SearchBox = ({ classes, values, onChange, onSubmit, className, ...otherProps }) => {
 
   return (
     <div className={clsx(classes.search, className)} {...otherProps}>
@@ -79,8 +66,7 @@ const SearchBox = ({ classes, className, ...otherProps }) => {
           name="value"
           inputProps={{ "aria-label": "search" }}
           onChange={onChange}
-          value={values.value}
-          onFocus={handleFocus}
+          value={values}
         />
       </form>
     </div>

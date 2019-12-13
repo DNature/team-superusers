@@ -4,14 +4,14 @@ export default gql`
   mutation registerUser(
     $displayName: String!
     $email: String!
-    $mobileNumber: String!
+    $key: String!
     $password: String!
   ) {
     registerUser(
       registerUser: {
         displayName: $displayName
         email: $email
-        mobileNumber: $mobileNumber
+        key: $key
         password: $password
       }
     ) {

@@ -9,7 +9,7 @@ const UseFormHook = (callback, initialState = {}) => {
 
   const onSubmit = event => {
     event.preventDefault();
-    callback();
+    if (callback) callback();
   };
 
   const onSwitchChange = name => e => {

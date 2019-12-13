@@ -2,6 +2,7 @@ import usersResolvers from './users';
 import filesResolvers from './file';
 import propertyResolvers from './property';
 import categoryResolvers from './category';
+import verifyResolvers from './verify';
 
 // exports both Queries and mutations
 export default {
@@ -15,6 +16,7 @@ export default {
     ...usersResolvers.Mutation,
     ...filesResolvers.Mutation,
     ...propertyResolvers.Mutation,
-    ...categoryResolvers.Mutation
+    ...categoryResolvers.Mutation,
+    ...verifyResolvers.Mutation
   }
 };

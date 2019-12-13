@@ -10,7 +10,7 @@ const styles = theme => ({
   }
 })
 const SelectCategory = (props) => {
-  const { classes, children, value, handleChange, helpertext, ...otherProps } = props
+  const { classes, children, value, onChange, name, helpertext, ...otherProps } = props
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -31,7 +31,8 @@ const SelectCategory = (props) => {
           onClose={handleClose}
           onOpen={handleOpen}
           value={value}
-          onChange={handleChange}
+          name={name}
+          onChange={onChange}
           {...otherProps}
         >
           {children}

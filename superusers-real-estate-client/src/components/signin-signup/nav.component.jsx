@@ -1,9 +1,11 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { withStyles, Paper, Tabs, Tab, Typography, Box, Grid } from '@material-ui/core';
 import CustomDialog from '../custom-dialog/custom-dialog.component';
 import SignIn from './sign-in.component'
 import SignUp from './sign-up.component'
+import VerifyComponent from './verify.component'
+import { AuthContext } from '../../context/auth';
 
 const styles = theme => ({
   ...theme.theme,
@@ -55,10 +57,12 @@ function a11yProps(index) {
 
 const SignInSignUpNav = ({ classes, open, handleClose }) => {
   const [value, setValue] = React.useState(0);
+  const { verificationCode } = useContext(AuthContext)
 
   const handleChange = (_, newValue) => {
     setValue(newValue);
   };
+
   return (
     <div className={classes.root}>
       <CustomDialog open={open} handleClose={handleClose} maxWidth="lg">
@@ -87,7 +91,9 @@ const SignInSignUpNav = ({ classes, open, handleClose }) => {
             </Grid>
             <Grid item lg={6} md={6} sm={12} xs={12}>
               <div className={classes.signInWrapper}>
-                <SignUp onClose={handleClose} />
+                {
+                  !verificationCode ? (<VerifyComponent />) : (<SignUp onClose={handleClose} />)
+                }
               </div>
             </Grid>
           </Grid>
