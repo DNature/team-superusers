@@ -43,7 +43,8 @@ export default {
         location,
         ammount,
         imageUrl,
-        category
+        category,
+        hotSale
       );
       if (!valid) throw new UserInputError('Errors', { errors });
 

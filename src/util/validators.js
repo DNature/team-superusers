@@ -75,7 +75,8 @@ export const validatePropertyInput = (
   location,
   ammount,
   imageUrl,
-  category
+  category,
+  hotSale
 ) => {
   const errors = {};
   if (name.trim() === '') errors.name = 'Field must not be empty';
@@ -85,6 +86,7 @@ export const validatePropertyInput = (
   if (ammount.trim() === '') errors.ammount = 'Field must not be empty';
   if (imageUrl.trim() === '') errors.imageUrl = 'Image Url must not be empty';
   if (category.trim() === '') errors.category = 'Categroy must not be empty';
+  if (hotSale !== 'true' || hotSale !== false) errors.hotSale = 'Invalid Type';
   return {
     errors,
     valid: Object.keys(errors).length < 1

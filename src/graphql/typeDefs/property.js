@@ -10,7 +10,7 @@ export default gql`
     description: String!
     location: String!
     ammount: String!
-    hotSale: Boolean!
+    hotSale: String!
     category: String!
     otherImages: [Image]
     tags: [Tags]
@@ -32,7 +32,7 @@ export default gql`
     description: String
     location: String!
     ammount: String!
-    hotSale: Boolean
+    hotSale: String
     category: String!
     otherImages: [ImageInput]
     tags: [TagInput]

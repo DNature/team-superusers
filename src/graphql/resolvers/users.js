@@ -107,14 +107,20 @@ export default {
       const user = await User.findOne({ email });
 
       if (!user) {
-        errors.general = 'User not found';
-        throw new UserInputError("User Doesn't Exist");
+        throw new UserInputError("User Doesn't Exist", {
+          errors: {
+            email: "User Doesn't Exist"
+          }
+        });
       }
 
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
-        errors.general = 'Wrong password';
-        throw new UserInputError('Wrong Credentials', { errors });
+        throw new UserInputError('Wrong Credentials', {
+          errors: {
+            password: 'Wrong password'
+          }
+        });
       }
 
       const token = generateUserToken(user);

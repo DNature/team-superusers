@@ -7,7 +7,7 @@ const propertySchema = new Schema({
   imageUrl: { type: String, required: true },
   location: { type: String, required: true },
   ammount: { type: Number, required: true },
-  hotSale: { type: Boolean, default: false },
+  hotSale: { type: String, default: 'false' },
   category: { type: String, required: true },
   createdAt: { type: String, required: true },
   otherImages: [{ url: String }],
