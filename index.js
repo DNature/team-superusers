@@ -42,6 +42,14 @@ export default (async function() {
     app.listen({ port: APP_PORT }, () => {
       console.log(`🚀 server running @ http://localhost:${APP_PORT}`);
     });
+
+    app.get('/*', function(req, res) {
+      res.sendFile(path.join(__dirname, './build/index.html'), function(err) {
+        if (err) {
+          res.status(500).send(err);
+        }
+      });
+    });
   } catch (err) {
     console.error(err);
   }
