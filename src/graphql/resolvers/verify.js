@@ -34,42 +34,36 @@ export default {
 
       let resNumber = '234'.concat(num);
       try {
-        // nexmo.message.sendSms(
-        //   from,
-        //   resNumber,
-        //   'Verification code ' + text,
-        //   async (err, responseData) => {
-        //     if (err) {
-        //       console.log(err);
-        //       return false;
-        //     } else {
-        //       if (responseData.messages[0]['status'] === '0') {
-        //         const response = new VerifyApi({
-        //           key: text,
-        //           mobileNumber: resNumber
-        //         });
+        nexmo.message.sendSms(
+          from,
+          resNumber,
+          'Verification code ' + text + ' ',
+          async (err, responseData) => {
+            if (err) {
+              console.log(err);
+              return false;
+            } else {
+              if (responseData.messages[0]['status'] === '0') {
+                const response = new VerifyApi({
+                  key: text,
+                  mobileNumber: resNumber
+                });
 
-        //         await response.save();
-        //         console.log(resNumber);
+                await response.save();
+                console.log(resNumber);
 
-        //         console.log('Message sent successfully.');
-        //       } else {
-        //         console.log('234'.concat(num));
+                console.log('Message sent successfully.');
+              } else {
+                console.log('234'.concat(num));
 
-        //         console.log(
-        //           `Message failed with error: ${responseData.messages[0]['error-text']}`
-        //         );
-        //         return `Message failed with error: ${responseData.messages[0]['error-text']}`;
-        //       }
-        //     }
-        //   }
-        // );
-        const response = new VerifyApi({
-          key: text,
-          mobileNumber: resNumber
-        });
-
-        await response.save();
+                console.log(
+                  `Message failed with error: ${responseData.messages[0]['error-text']}`
+                );
+                return `Message failed with error: ${responseData.messages[0]['error-text']}`;
+              }
+            }
+          }
+        );
         return 'Verification code sent successfully';
       } catch (err) {
         console.log(err);
