@@ -11,6 +11,7 @@ import { UseFormHook } from '../../components/hooks'
 // Material ui
 import { withStyles, Grid, Typography, LinearProgress, Table, TableBody, TableRow, Paper } from '@material-ui/core'
 import SearchOutput from '../../components/search-box/search-output.component';
+import { AuthContext } from '../../context/auth';
 
 const styles = theme => ({
   ...theme.theme,
@@ -39,6 +40,7 @@ const styles = theme => ({
 
 const SellPage = ({ classes }) => {
   const { data, loading } = useQuery(Properties);
+  const {user} = React.useContext(AuthContext)
   const { values, onChange, onSubmit } = UseFormHook(callback, {
     value: ""
   });
@@ -62,15 +64,22 @@ const SellPage = ({ classes }) => {
         <CustomPage background="/images/sliders/2.jpg" headingText="My Properties">
           <SearchBox values={values.value} onChange={onChange} onSubmit={onSubmit} />
         </CustomPage>
-        <Grid container>
-          <Grid item lg={4} md={5} sm={12} xs={12} className={classes.createProperty}>
-            <CreateProperty />
+        {user ? (
+          <Grid container>
+            <Grid item lg={4} md={5} sm={12} xs={12} className={classes.createProperty}>
+              <CreateProperty />
+            </Grid>
+            <Grid item lg={8} md={7} sm={12} xs={12} className={classes.createProperty}>
+              <Typography variant="h3">Recent Properties</Typography>
+              <Collections properties={properties} />
+            </Grid>
           </Grid>
-          <Grid item lg={8} md={7} sm={12} xs={12} className={classes.createProperty}>
-            <Typography variant="h3">Recent Properties</Typography>
-            <Collections properties={properties} />
-          </Grid>
-        </Grid>
+        ) : (
+            <>
+              <Typography variant="h3">Recent Properties</Typography>
+              <Collections properties={properties} />
+            </>
+          )}
         <div className={classes.outputWrapper}>
           <Paper className={classes.output}>
             <Table>

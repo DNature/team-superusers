@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development node -r esm .",
-    "start": "NODE_ENV=development nodemon -r esm"
+    "serve": "NODE_ENV=development nodemon -r esm",
+    "build": "NODE_ENV=production node -r esm ."
   },
   "author": "Divine Nature",
   "license": "MIT",
@@ -20,6 +21,7 @@
     "nexmo": "^2.5.2"
   },
   "devDependencies": {
+    "concurrently": "^5.0.1",
     "nodemon": "^1.19.4"
   }
 }

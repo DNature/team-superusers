@@ -20,7 +20,7 @@ export default (async function() {
     });
 
     app.disable('X-Powered-By');
-    app.use('/files', express.static(path.join(__dirname, 'files')));
+    app.use(express.static('build'));
     app.use((req, res, next) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader(
