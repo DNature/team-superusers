@@ -9,7 +9,7 @@ import SearchBox from '../../components/search-box/search-box.component'
 import { UseFormHook } from '../../components/hooks'
 
 // Material ui
-import { withStyles, Grid, Typography, LinearProgress } from '@material-ui/core'
+import { withStyles, Grid, Typography, LinearProgress, Table, TableBody, TableRow, Paper } from '@material-ui/core'
 import SearchOutput from '../../components/search-box/search-output.component';
 
 const styles = theme => ({
@@ -19,9 +19,21 @@ const styles = theme => ({
     paddingBottom: theme.spacing(10),
   },
   output: {
-    zIndex: 1000
+    margin: 'auto',
+    maxWidth: '400px'
+  },
+  outputWrapper: {
+    zIndex: 1000,
+    width: '100vw',
+    textAlign: 'center',
+    position: 'absolute',
+    top: '40%',
+    margin: 'auto',
+  },
+  tableRow: {
+    maxHeight: '80px',
+    overflow: 'hidden',
   }
-
 });
 
 
@@ -59,11 +71,21 @@ const SellPage = ({ classes }) => {
             <Collections properties={properties} />
           </Grid>
         </Grid>
-        {
-          filteredProperties.map(f => (
-            <SearchOutput className={classes.output} property={f} key={f.id} />
-          ))
-        }
+        <div className={classes.outputWrapper}>
+          <Paper className={classes.output}>
+            <Table>
+              <TableBody>
+                {
+                  filteredProperties.map(f => (
+                    <TableRow hover key={f.id} className={classes.tableRow} >
+                      <SearchOutput property={f} />
+                    </TableRow>
+                  ))
+                }
+              </TableBody>
+            </Table>
+          </Paper>
+        </div>
       </div>
     )
   } else {
