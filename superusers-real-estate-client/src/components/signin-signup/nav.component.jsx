@@ -6,6 +6,7 @@ import SignIn from './sign-in.component'
 import SignUp from './sign-up.component'
 import VerifyComponent from './verify.component'
 import { AuthContext } from '../../context/auth';
+import CustomSnackbar from '../MySnackbar/CustomSnackbar'
 
 const styles = theme => ({
   ...theme.theme,
@@ -57,7 +58,8 @@ function a11yProps(index) {
 
 const SignInSignUpNav = ({ classes, open, handleClose }) => {
   const [value, setValue] = React.useState(0);
-  const { verificationCode } = useContext(AuthContext)
+  const { verificationCode } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = React.useState(true);
 
   const handleChange = (_, newValue) => {
     setValue(newValue);
@@ -92,13 +94,27 @@ const SignInSignUpNav = ({ classes, open, handleClose }) => {
             <Grid item lg={6} md={6} sm={12} xs={12}>
               <div className={classes.signInWrapper}>
                 {
-                  !verificationCode ? (<VerifyComponent />) : (<SignUp onClose={handleClose} />)
+                  !verificationCode ? (<VerifyComponent />) : (
+                    <>
+                      <SignUp onClose={handleClose} />
+                      <CustomSnackbar
+                        className={classes.snackbar}
+                        open={isOpen}
+                        onClose={() => {
+                          setIsOpen(false);
+                        }}
+                        message='A six digit code have been sent to you'
+                      />
+                    </>
+                  )
                 }
+
               </div>
             </Grid>
           </Grid>
         </TabPanel>
       </CustomDialog>
+
     </div>
   )
 }

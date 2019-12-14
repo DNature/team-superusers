@@ -24,10 +24,10 @@ const styles = theme => ({
   }
 });
 
-const VerifyComponent = props => {
+const VerifyComponent = (props) => {
   const context = useContext(AuthContext);
   const { classes, onClose } = props;
-  const [errors, setErrors] = React.useState({});
+  const [errors, setErrors] = useState({});
 
   const { onChange, onSubmit, values } = UseFormHook(verificationCallback, {
     mobileNumber: "",
@@ -35,7 +35,7 @@ const VerifyComponent = props => {
 
   const [verifyMessage, { loading }] = useMutation(VerificationMutation, {
     update(_, { data: { verifyMessage: verificationCode } }) {
-      context.verify(verificationCode)
+      context.verify("Check your phone for verification code")
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -86,6 +86,7 @@ const VerifyComponent = props => {
           </Button>
         </form>
       </div>
+
     </div>
   );
 };

@@ -14,7 +14,8 @@ const nexmo = new Nexmo(
 
 export default {
   Mutation: {
-    async verifyMessage(_, { mobileNumber }) {
+    async verifyMessage(_, args) {
+      const { mobileNumber } = await args;
       const text = crypto
         .randomBytes(3)
         .toString('hex')
@@ -27,11 +28,16 @@ export default {
       if (!valid) {
         throw new UserInputError('Errors', { errors });
       }
+
+      const num =
+        mobileNumber[0] === '0' ? mobileNumber.substr(1) : mobileNumber;
+
+      let resNumber = '234'.concat(num);
       try {
         // nexmo.message.sendSms(
         //   from,
-        //   mobileNumber,
-        //   text,
+        //   resNumber,
+        //   'Verification code ' + text,
         //   async (err, responseData) => {
         //     if (err) {
         //       console.log(err);
@@ -40,12 +46,16 @@ export default {
         //       if (responseData.messages[0]['status'] === '0') {
         //         const response = new VerifyApi({
         //           key: text,
-        //           mobileNumber
+        //           mobileNumber: resNumber
         //         });
 
         //         await response.save();
+        //         console.log(resNumber);
+
         //         console.log('Message sent successfully.');
         //       } else {
+        //         console.log('234'.concat(num));
+
         //         console.log(
         //           `Message failed with error: ${responseData.messages[0]['error-text']}`
         //         );
@@ -54,15 +64,13 @@ export default {
         //     }
         //   }
         // );
-
         const response = new VerifyApi({
           key: text,
-          mobileNumber: '234'.concat(mobileNumber)
+          mobileNumber: resNumber
         });
 
         await response.save();
-
-        return text;
+        return 'Verification code sent successfully';
       } catch (err) {
         console.log(err);
         throw new Error(err);
