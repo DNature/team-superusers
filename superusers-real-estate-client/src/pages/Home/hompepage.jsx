@@ -2,9 +2,11 @@ import React from "react";
 
 // components
 import HompageSlider from '../../components/homepage-slider/homepage-slider.component'
-import GroupNav from '../../components/group-nav/group.component'
+import GroupNav from '../../components/group-nav/group.component';
+import SignInSignUpNav from '../../components/signin-signup/nav.component'
 // Material ui
-import { withStyles, Container, Typography } from '@material-ui/core'
+import { withStyles, Container, Typography, Button } from '@material-ui/core'
+import { AuthContext } from "../../context/auth";
 
 const styles = theme => ({
   ...theme.theme,
@@ -26,10 +28,25 @@ const styles = theme => ({
   },
   collection: {
     marginTop: theme.spacing(10)
+  },
+  button: {
+    width: "200px",
+    margin: '20px auto',
+    textAlign: 'center'
   }
 });
 
 const Home = ({ classes }) => {
+  const [open, setOpen] = React.useState(false);
+  const { user } = React.useContext(AuthContext)
+  const handleOpen = e => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <>
@@ -40,6 +57,14 @@ const Home = ({ classes }) => {
         <div className={classes.rule} />
       </Container>
       <GroupNav className={classes.collection} />
+      {!user && (
+        <>
+          <div className={classes.button}>
+            <Button color="secondary" variant="contained" onClick={handleOpen}>Sign In</Button>
+          </div>
+          <SignInSignUpNav handleClose={handleClose} open={open} />
+        </>
+      )}
     </>
   );
 };
