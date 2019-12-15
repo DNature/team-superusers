@@ -45,18 +45,19 @@ const CreateProperty = props => {
 
   const [createProperty, { loading }] = useMutation(CreatePropertyMutation, {
     variables: values,
-    update: (proxy, result) => {
-      try {
-        const data = proxy.readQuery({
-          query: Properties,
-          variable: values
-        });
-        data.properties = [result.data.createProperty, ...data.properties];
-        proxy.writeQuery({ query: Properties, variables: { ...values, owner: user.displayName }, data });
-      } catch (err) {
-        console.log(err);
-      }
-    },
+    refetchQueries: [{ query: Properties, variables: values }],
+    // update: (proxy, result) => {
+    //   try {
+    //     const data = proxy.readQuery({
+    //       query: Properties,
+    //       variable: values
+    //     });
+    //     data.properties = [result.data.createProperty, ...data.properties];
+    //     proxy.writeQuery({ query: Properties, variables: { ...values, owner: user.displayName }, data });
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
       return false;
