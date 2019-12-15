@@ -6,7 +6,7 @@ const newVerifyApi = new Schema({
   expiresAt: {
     type: Date,
     default: Date.now,
-    index: { expires: 200000 }
+    index: { expires: '7m' }
   }
 });
 
