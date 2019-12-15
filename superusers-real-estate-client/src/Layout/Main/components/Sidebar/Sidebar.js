@@ -49,12 +49,8 @@ const Sidebar = props => {
       href: '/rent'
     },
     {
-      title: 'Authentication',
-      href: '/sign-in'
-    },
-    {
-      title: 'Typography',
-      href: '/typography'
+      title: 'Sell',
+      href: '/sell'
     }
   ];
 
