@@ -40,7 +40,7 @@ const styles = theme => ({
 
 const SellPage = ({ classes }) => {
   const { data, loading } = useQuery(Properties);
-  const {user} = React.useContext(AuthContext)
+  const { user } = React.useContext(AuthContext)
   const { values, onChange, onSubmit } = UseFormHook(callback, {
     value: ""
   });
@@ -61,7 +61,7 @@ const SellPage = ({ classes }) => {
     return (
       <div>
         {loading && <LinearProgress color="secondary" />}
-        <CustomPage background="/images/sliders/2.jpg" headingText="My Properties">
+        <CustomPage background={`/images/sliders/${Math.ceil(Math.random() * 5)}.jpg`} headingText="My Properties">
           <SearchBox values={values.value} onChange={onChange} onSubmit={onSubmit} />
         </CustomPage>
         {user ? (

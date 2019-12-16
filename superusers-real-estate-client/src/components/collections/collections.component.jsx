@@ -31,15 +31,18 @@ const Collections = ({ classes, className, properties }) => {
       <Grid container spacing={2}>
         {
           properties.map(({ id, ...property }) => (
-            <Grid onClick={handleOpen} key={id} item xl={3} lg={4} md={6} sm={12} xg={12}>
-              <CollectionItem  {...property} />
-            </Grid>
+            <>
+              <Grid onClick={handleOpen} key={id} item xl={3} lg={4} md={6} sm={12} xg={12}>
+                <CollectionItem  {...property} />
+              </Grid>
+              <CustomDialog open={open} handleClose={handleClose} maxWidth="lg">
+                <CustomDialogContent id={id} handleClose={handleClose} />
+              </CustomDialog>
+            </>
           ))
         }
       </Grid>
-      <CustomDialog open={open} handleClose={handleClose} maxWidth="lg">
-        <CustomDialogContent handleClose={handleClose} />
-      </CustomDialog>
+
     </div>
   )
 }

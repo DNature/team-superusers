@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 
   searchBg: {
-    backgroundImage: `url('/images/sliders/1.jpg')`,
+    backgroundImage: `url('/images/sliders/${Math.ceil(Math.random() * 5)}.jpg')`,
     height: '100%',
     width: '100%',
     backgroundRepeat: 'no-repeat',

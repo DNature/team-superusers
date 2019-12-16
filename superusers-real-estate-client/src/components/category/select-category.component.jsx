@@ -24,7 +24,7 @@ const SelectCategory = (props) => {
   return (
     <>
       <FormControl className={classes.form}>
-        <InputLabel style={{ marginLeft: 10 }} id="group-controlled-open-select-label">Select Department</InputLabel>
+        <InputLabel style={{ marginLeft: 10 }} id="group-controlled-open-select-label">Select Category</InputLabel>
         <Select
           labelId="group-controlled-open-select-label"
           open={open}

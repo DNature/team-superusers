@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps'
 import { Close, AcUnit, LocalParking, Style } from '@material-ui/icons';
+import DeleteButton from "../delete-button/delete-button.component";
 
 
 const styles = theme => ({
@@ -42,7 +43,7 @@ function Map() {
 const WrappedMap = (withScriptjs(withGoogleMap(Map)))
 
 
-const CustomDialogContent = ({ classes, handleClose, ...otherProps }) => {
+const CustomDialogContent = ({ classes, id, handleClose, ...otherProps }) => {
   return (
     <>
 
@@ -62,23 +63,23 @@ const CustomDialogContent = ({ classes, handleClose, ...otherProps }) => {
         <Grid container spacing={1}>
           <Grid item lg={6} md={6} sm={12} xs={12}>
             <div className="parentImage">
-              <img src="/images/sliders/1.jpg" alt="image" />
+              <img src={`/images/sliders/${Math.ceil(Math.random() * 5)}.jpg`} alt="image" />
             </div>
             <Grid container spacing={1}>
               <Grid item lg={6} md={6} sm={6} xs={12}>
-                <img src="/images/sliders/1.jpg" alt="image" />
+                <img src={`/images/sliders/${Math.ceil(Math.random() * 5)}.jpg`} alt="image" />
               </Grid>
               <Grid item lg={6} md={6} sm={6} xs={12}>
-                <img src="/images/sliders/1.jpg" alt="image" />
+                <img src={`/images/sliders/${Math.ceil(Math.random() * 5)}.jpg`} alt="image" />
               </Grid>
               <Grid item lg={6} md={6} sm={6} xs={12}>
-                <img src="/images/sliders/1.jpg" alt="image" />
+                <img src={`/images/sliders/${Math.ceil(Math.random() * 5)}.jpg`} alt="image" />
               </Grid>
               <Grid item lg={6} md={6} sm={6} xs={12}>
-                <img src="/images/sliders/1.jpg" alt="image" />
+                <img src={`/images/sliders/${Math.ceil(Math.random() * 5)}.jpg`} alt="image" />
               </Grid>
               <Grid item lg={6} md={6} sm={6} xs={12}>
-                <img src="/images/sliders/1.jpg" alt="image" />
+                <img src={`/images/sliders/${Math.ceil(Math.random() * 5)}.jpg`} alt="image" />
               </Grid>
             </Grid>
           </Grid>
@@ -137,6 +138,9 @@ const CustomDialogContent = ({ classes, handleClose, ...otherProps }) => {
           </Grid>
         </Grid>
       </DialogContent>
+      <DialogActions>
+        <DeleteButton id={id} onClick={handleClose} />
+      </DialogActions>
     </>
   )
 }

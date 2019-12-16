@@ -44,7 +44,9 @@ const VerifyComponent = (props) => {
     onCompleted() {
       setErrors({})
     },
-    variables: values
+    variables: {
+      mobileNumber: values.mobileNumber.substr(1)
+    }
   });
 
   function verificationCallback() {

@@ -93,9 +93,9 @@ export default {
       });
 
       try {
-        if (property.owner !== user.displayName) {
-          throw new AuthenticationError('Unauthorized action');
-        }
+        // if (property.owner !== user.displayName) {
+        //   throw new AuthenticationError('Unauthorized action');
+        // }
 
         await updateCategoryCount.updateOne({ $inc: { count: -1 } });
         await updateCategoryCount.save();
