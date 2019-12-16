@@ -68,7 +68,7 @@ const Topbar = props => {
             <Button
               component={Link}
               to='/rent'
-              color='primary'
+              color='secondary'
               variant='contained'
               disabled
             >
@@ -96,11 +96,15 @@ const Topbar = props => {
             </Button>
 
             {user ? (
-              <Button color='primary' variant='contained' onClick={logout}>
+              <Button color='secondary' variant='contained' onClick={logout}>
                 logout
               </Button>
             ) : (
-              <Button color='primary' variant='contained' onClick={handleOpen}>
+              <Button
+                color='secondary'
+                variant='contained'
+                onClick={handleOpen}
+              >
                 Sing in
               </Button>
             )}

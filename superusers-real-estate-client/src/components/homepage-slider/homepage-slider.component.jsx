@@ -52,7 +52,7 @@ const HomepageSlider = ({ classes }) => {
       <div className={classes.searchContainer}>
         <div className={classes.searchBg} />
         <div className={classes.textContainer} >
-          <h1 className={`${classes.text} logo`}>Acquire Dream Home</h1>
+          <h1 className={`${classes.text} logo`}>Search your DreamHouse</h1>
           <p className={classes.text}>We’ll help you find a place you’ll love.</p>
         </div>
         <SearchBox className={classes.searchbox} />

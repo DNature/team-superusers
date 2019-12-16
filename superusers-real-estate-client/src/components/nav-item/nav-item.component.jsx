@@ -26,7 +26,7 @@ const styles = theme => ({
   }
 })
 
-const NavItem = ({ classes, imageUrl, title, description, buttonTitle, path }) => (
+const NavItem = ({ classes, imageUrl, title, description, buttonTitle, path, disabled }) => (
   <Card>
     <CardActionArea>
       <CardMedia
@@ -43,7 +43,7 @@ const NavItem = ({ classes, imageUrl, title, description, buttonTitle, path }) =
         </Typography>
       </CardContent>
       <div className={classes.button}>
-        <Button component={Link} to={path} size="small" color="primary" variant="contained">
+        <Button component={Link} to={path} disabled={disabled} size="small" color="primary" variant="contained">
           {buttonTitle}
         </Button>
       </div>

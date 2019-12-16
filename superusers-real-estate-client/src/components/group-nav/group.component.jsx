@@ -18,13 +18,13 @@ const GroupNav = ({ classes, className }) => {
     <Container maxWidth="lg" className={clsx(classes.collectionContainer, className)}>
       <Grid container justify="center" spacing={2}>
         <Grid item xl={3} lg={4} md={4} sm={6} xg={12}>
-          <NavItem path="/buy" title="Buy a home" description="Find your place with an immersive photo experience and the most listings, including things you won't find anywhere else" buttonTitle="Search homes" imageUrl="/images/home/1.jpg" />
+          <NavItem path="/buy" title="Buy a House" description="Find your place with an immersive photo experience and the most listings, including things you won't find anywhere else" buttonTitle="Search homes" imageUrl="/images/home/1.jpg" />
         </Grid>
         <Grid item xl={3} lg={4} md={4} sm={6} xg={12}>
-          <NavItem path="/sell" title="Sell a home" description="Find your place with an immersive photo experience and the most listings, including things you won't find anywhere else" buttonTitle="Search homes" imageUrl="/images/home/3.jpg" />
+          <NavItem path="/sell" title="Sell a House" description="Find your place with an immersive photo experience and the most listings, including things you won't find anywhere else" buttonTitle="Search homes" imageUrl="/images/home/3.jpg" />
         </Grid>
         <Grid item xl={3} lg={4} md={4} sm={6} xg={12}>
-          <NavItem path="/rent" title="Rent a home" description="Find your place with an immersive photo experience and the most listings, including things you won't find anywhere else" buttonTitle="Search homes" imageUrl="/images/home/2.jpg" />
+          <NavItem disabled={true} path="/rent" title="Rent a House" description="Find your place with an immersive photo experience and the most listings, including things you won't find anywhere else" buttonTitle="Search homes" imageUrl="/images/home/2.jpg" />
         </Grid>
       </Grid>
     </Container>

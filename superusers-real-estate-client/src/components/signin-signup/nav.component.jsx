@@ -15,7 +15,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   image: {
-    backgroundImage: `url('/images/sliders/${Math.ceil(Math.random() * 5)}.jpg')`,
+    backgroundImage: `url('/images/sliders/1.jpg')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     minHeight: '70vh',
@@ -29,11 +29,6 @@ const styles = theme => ({
   },
   background: {
     backgroundImage: `url('/images/sliders/3.jpg')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    minHeight: '70vh',
-    maxHeight: '80vh',
-    width: '100%'
   }
 })
 
@@ -87,7 +82,7 @@ const SignInSignUpNav = ({ classes, open, handleClose }) => {
               </div>
             </Grid>
             <Grid item lg={6} md={6}>
-              <div className={`${classes.background}`} />
+              <div className={`${classes.image} ${classes.background}`} />
             </Grid>
           </Grid>
         </TabPanel>
