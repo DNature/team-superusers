@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development node -r esm .",
     "serve": "NODE_ENV=development nodemon -r esm",
-    "build": "npx pm2 start index.js --node-args=\"-r esm\""
+    "build": "NODE_ENV=production npx pm2 start index.js --node-args=\"-r esm\""
   },
   "author": "Divine Nature",
   "license": "MIT",
