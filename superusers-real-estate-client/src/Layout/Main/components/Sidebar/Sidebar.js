@@ -63,7 +63,7 @@ const Sidebar = props => {
       variant={variant}
     >
       <div {...rest} className={clsx(classes.root, className)}>
-        <SidebarNav className={classes.nav} pages={pages} />
+        <SidebarNav className={classes.nav} pages={pages} onClick={onClose} />
       </div>
     </Drawer>
   );
