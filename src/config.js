@@ -1,5 +1,5 @@
 export const {
-  APP_PORT = 5000,
+  APP_PORT = 8080,
   NODE_ENV = 'development',
   MONGODB = 'mongodb://localhost:27017/superusers-real-estate',
   SECRET = 'try to keep things simple'

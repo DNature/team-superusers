@@ -5,10 +5,10 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createUploadLink } from 'apollo-upload-client';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { setContext } from 'apollo-link-context';
+import { apiUrl } from './config';
 
 const httpLink = createUploadLink({
-  // uri: 'http://134.209.190.48:5000/graphql'
-  uri: 'http://localhost:5000/graphql'
+  uri: `${apiUrl}/graphql`
 });
 
 const authLink = setContext(() => {
